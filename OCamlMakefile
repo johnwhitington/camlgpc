@@ -297,9 +297,10 @@ ifndef REAL_OCAMLFIND
       OCAML_DEP_PACKAGES :=
     endif
     OCAML_FIND_LINKPKG := -linkpkg
-    REAL_OCAMLFIND := $(OCAMLFIND)
   endif
 endif
+
+REAL_OCAMLFIND := $(OCAMLFIND)
 
 export OCAML_FIND_PACKAGES
 export OCAML_DEP_PACKAGES
@@ -885,7 +886,7 @@ $(DLLSONAME):		$(OBJ_LINK)
 
 else
 $(DLLSONAME):		$(OBJ_LINK)
-			$(OCAMLMKLIB) $(INCFLAGS) $(CLIBFLAGS) \
+			$(REAL_OCAMLFIND) $(OCAMLMKLIB) $(INCFLAGS) $(CLIBFLAGS) \
 				-o $(CLIB_BASE) $(OBJ_LINK) $(CLIBS:%=-l%) \
 				$(OCAMLMKLIB_FLAGS)
 endif
@@ -1010,9 +1011,9 @@ endif
 			$(QUIET)if [ $(NOIDLHEADER) ]; then touch $*.h; fi
 
 .c.$(EXT_OBJ):
-			$(OCAMLC) -c -cc "$(CC)" -ccopt "$(CFLAGS) \
+			$(REAL_OCAMLFIND) $(OCAMLC) -c -ccopt "$(CFLAGS) \
 				$(CPPFLAGS) $(CPPFLAGS_WIN32) \
-				$(CFLAGS_WIN32) $(CINCFLAGS) $(CFLAG_O)$@ " $< 
+				$(CFLAGS_WIN32) $(CINCFLAGS) $(CFLAG_O)$@ " $<
 
 .$(EXT_CXX).$(EXT_OBJ):
 			$(CXX) -c $(CXXFLAGS) $(CINCFLAGS) $(CPPFLAGS) \
