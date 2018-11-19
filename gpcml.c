@@ -6,6 +6,7 @@
 #include <caml/mlvalues.h>
 #include <caml/custom.h>
 #include <assert.h>
+#include <caml/signals.h>
 
 static void freepolygon(value);
 
@@ -127,7 +128,11 @@ CAMLprim value gpcml_clip(value p, value q, value op) {
  if (clip_op == 1) gpc_clipop = GPC_INT;
  if (clip_op == 2) gpc_clipop = GPC_XOR;
  if (clip_op == 3) gpc_clipop = GPC_UNION;
+
+ caml_enter_blocking_section();
  gpc_polygon_clip(gpc_clipop, real_p, real_q, rp);
+ caml_leave_blocking_section();
+
  r = alloc_custom(&polygon_ops, sizeof(gpc_polygon*), 0, 1);
  *((gpc_polygon **) Data_custom_val(r)) = rp;
  CAMLreturn(r);
