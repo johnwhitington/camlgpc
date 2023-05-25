@@ -29,7 +29,7 @@ CAMLprim value gpcml_buildpolygon (value mlpoly) {
   CAMLparam1 (mlpoly);
   CAMLlocal1 (cst);
   gpc_polygon *p = (gpc_polygon *) malloc(sizeof(gpc_polygon));
-  cst = alloc_custom(&polygon_ops, sizeof(gpc_polygon*), 0, 1);
+  cst = caml_alloc_custom(&polygon_ops, sizeof(gpc_polygon*), 0, 1);
   *((gpc_polygon **) Data_custom_val(cst)) = p;
   if (p) {
     int x, y;
@@ -56,7 +56,7 @@ CAMLprim value gpcml_getpolygon(value poly) {
   CAMLlocal5(holes, contours, contour, vertices, vertex);
   int x, y;
   gpc_polygon *p = *(gpc_polygon **) Data_custom_val(poly);
-  mlp = alloc_tuple(3);
+  mlp = caml_alloc_tuple(3);
   Store_field(mlp, 0, Val_int(p->num_contours));
   if (p->num_contours == 0)
   {
@@ -65,11 +65,11 @@ CAMLprim value gpcml_getpolygon(value poly) {
   }
   else
   {
-    holes = alloc(p->num_contours, 0);
-    contours = alloc(p->num_contours, 0);
+    holes = caml_alloc(p->num_contours, 0);
+    contours = caml_alloc(p->num_contours, 0);
     for(x = 0; x < p->num_contours; x++) {
       Store_field(holes, x, Val_int(p->hole[x]));
-      contour = alloc_tuple(2);
+      contour = caml_alloc_tuple(2);
       Store_field(contour, 0, Val_int(p->contour[x].num_vertices));
       if (p->contour[x].num_vertices == 0) 
       {
@@ -78,10 +78,10 @@ CAMLprim value gpcml_getpolygon(value poly) {
       }
       else
       {
-        vertices = alloc(p->contour[x].num_vertices, 0);
+        vertices = caml_alloc(p->contour[x].num_vertices, 0);
         Store_field(contour, 1, vertices);
         for(y = 0; y < p->contour[x].num_vertices; y++) {
-          vertex = alloc(4, Double_array_tag);
+          vertex = caml_alloc(4, Double_array_tag);
           Store_double_field(vertex, 0, (p->contour[x].vertex)[y].x);
           Store_double_field(vertex, 1, (p->contour[x].vertex)[y].y);
           Store_field(vertices, y, vertex);
@@ -133,7 +133,7 @@ CAMLprim value gpcml_clip(value p, value q, value op) {
  gpc_polygon_clip(gpc_clipop, real_p, real_q, rp);
  caml_leave_blocking_section();
 
- r = alloc_custom(&polygon_ops, sizeof(gpc_polygon*), 0, 1);
+ r = caml_alloc_custom(&polygon_ops, sizeof(gpc_polygon*), 0, 1);
  *((gpc_polygon **) Data_custom_val(r)) = rp;
  CAMLreturn(r);
 }
