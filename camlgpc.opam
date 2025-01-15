@@ -1,0 +1,15 @@
+opam-version: "2.0"
+name: "camlgpc"
+version: "1.1"
+maintainer: "contact@coherentgraphics.co.uk"
+authors: ["John Whitington" "Alan Murta"]
+homepage: "http://github.com/johnwhitington/camlgpc"
+bug-reports: "http://github.com/johnwhitington/camlgpc/issues"
+dev-repo: "git://github.com/johnwhitington/camlgpc"
+license: "MIT"
+build: [[make]]
+install: [[make "install"]]
+remove: [["ocamlfind" "remove" "camlgpc"]]
+depends: ["ocaml" "ocamlfind"]
+synopsis: "Interface to Alan Murta's General Polygon Clipper"
+flags: light-uninstall

@@ -1,5 +1,5 @@
 name="camlgpc"
 description="Interface to the GPC Polygon Clipping Library"
-version="1.0"
+version="1.1"
 archive(byte)="camlgpc.cma"
 archive(native)="camlgpc.cmxa"

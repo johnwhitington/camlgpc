@@ -14,6 +14,9 @@ CAMLLDFLAGS = -g
 
 all : native-code-library byte-code-library htdoc
 
+clean ::
+	rm -rf doc
+
 install : libinstall
 
 # Predefined generic makefile
