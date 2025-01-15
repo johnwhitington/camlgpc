@@ -3,8 +3,6 @@ camlgpc
 
 OCaml interface to Alan Murta's General Polygon Clipper.
 
-GPC Homepage: http://www.cs.man.ac.uk/~toby/gpc/
-
 To build
 ========
 
