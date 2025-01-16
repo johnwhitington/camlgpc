@@ -1,5 +1,3 @@
-MODS = clip
-
 SOURCES = gpc.h gpc.c gpcml.c clip.ml clip.mli
 
 RESULT = camlgpc
