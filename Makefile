@@ -4,8 +4,10 @@ SOURCES = gpc.h gpc.c gpcml.c clip.ml clip.mli
 
 RESULT = camlgpc
 
-LIBINSTALL_FILES = camlgpc.cma libcamlgpc_stubs.a clip.mli clip.cmi clip.cmt clip.cmti dllcamlgc_stubs.*
+LIBINSTALL_FILES = camlgpc.cma libcamlgpc_stubs.a clip.mli clip.cmi clip.cmt clip.cmti dllcamlgpc_stubs.*
 
+CFLAGS = -o2
+OCAMLFLAGS = -bin-annot
 OCAMLNCFLAGS = -g
 OCAMLBCFLAGS = -g
 CAMLLDFLAGS = -g
@@ -20,7 +22,7 @@ endif
 all : $(TARGETS)
 
 clean ::
-	rm -rf doc
+	rm -rf doc *.cmt *.cmti
 
 install : libinstall
 
