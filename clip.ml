@@ -97,4 +97,3 @@ let make_gpcpolygon holes vertex_arrays =
         vertex_arrays
     in
       Array.length holes_bool, holes_bool, contours
-

@@ -15,4 +15,3 @@ let result =
 
 let _ =
   Clip.gpcml_printpolygon result
-

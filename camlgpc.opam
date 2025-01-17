@@ -1,10 +1,10 @@
 opam-version: "2.0"
 name: "camlgpc"
-version: "1.1"
+version: "1.2"
 maintainer: "contact@coherentgraphics.co.uk"
 authors: ["John Whitington" "Alan Murta"]
-homepage: "http://github.com/johnwhitington/camlgpc"
-bug-reports: "http://github.com/johnwhitington/camlgpc/issues"
+homepage: "https://github.com/johnwhitington/camlgpc"
+bug-reports: "https://github.com/johnwhitington/camlgpc/issues"
 dev-repo: "git://github.com/johnwhitington/camlgpc"
 license: "MIT"
 build: [[make]]

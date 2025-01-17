@@ -137,4 +137,3 @@ CAMLprim value gpcml_clip(value p, value q, value op) {
  *((gpc_polygon **) Data_custom_val(r)) = rp;
  CAMLreturn(r);
 }
-

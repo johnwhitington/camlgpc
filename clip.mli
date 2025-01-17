@@ -28,4 +28,3 @@ val make_gpcpolygon : bool array -> gpc_vertex array array -> gpc_polygon
 returning the result. *)
 val gpcml_clippolygon :
   gpc_clipop -> gpc_polygon -> gpc_polygon -> gpc_polygon
-

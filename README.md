@@ -16,4 +16,3 @@ To build the example
 ====================
 
 Type "make" whilst in examples directory. Now execute the 'test' program.
-
