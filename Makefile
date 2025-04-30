@@ -1,27 +1,13 @@
-SOURCES = gpc.h gpc.c gpcml.c clip.ml clip.mli
+DESTDIR=/
+PREFIX=/usr/local
 
-RESULT = camlgpc
+.PHONY: all clean install
 
-LIBINSTALL_FILES = camlgpc.cma libcamlgpc_stubs.a clip.mli clip.cmi clip.cmt clip.cmti dllcamlgpc_stubs.*
-
-CFLAGS = -o2
-OCAMLFLAGS = -bin-annot
-OCAMLNCFLAGS = -g
-OCAMLBCFLAGS = -g
-CAMLLDFLAGS = -g
-
-TARGETS = byte-code-library htdoc
-
-ifneq ($(shell ocamlopt -version),)
-  TARGETS += native-code-library
-  LIBINSTALL_FILES += camlgpc.a camlgpc.cmxa clip.cmx
-endif
-
-all : $(TARGETS)
+all :
+	dune build @runtest @all
 
 clean ::
-	rm -rf doc *.cmt *.cmti
+	dune clean
 
-install : libinstall
-
--include OCamlMakefile
+install : all
+	dune install --destdir='$(DESTDIR)' --prefix='$(PREFIX)'

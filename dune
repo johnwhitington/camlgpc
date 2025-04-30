@@ -1,0 +1,5 @@
+(library
+ (name camlgpc)
+ (public_name camlgpc)
+ (wrapped false)
+ (foreign_stubs (language c) (names gpc gpcml)))
