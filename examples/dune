@@ -1,0 +1,6 @@
+(executable
+ (name test)
+ (libraries camlgpc))
+
+(cram
+ (deps test.exe))
