@@ -25,6 +25,9 @@ external gpcml_buildpolygon : gpc_polygon -> gpc_pointer =
 external gpcml_getpolygon : gpc_pointer -> gpc_polygon =
   "gpcml_getpolygon"
 
+external gpcml_printnativepolygon : gpc_pointer -> unit =
+  "gpcml_printpolygon"
+
 external gpcml_clip : gpc_pointer -> gpc_pointer -> int -> gpc_pointer =
   "gpcml_clip"
 
@@ -50,6 +53,14 @@ let array_iter2 f a b =
   else
     raise (Invalid_argument "Utility.array_iter2")
 
+let array_iter2 f a b =
+  if Array.length a = Array.length b then
+    if Array.length a = 0 then () else
+      for x = 0 to (Array.length a) - 1 do
+        f (Array.get a x) (Array.get b x)
+      done
+  else
+    raise (Invalid_argument "Utility.array_iter2")
 let gpcml_printpolygon (num_contours, holes, contours) =
   Printf.printf "Contours: %i\n" num_contours;
   array_iter2 printcontour holes contours
